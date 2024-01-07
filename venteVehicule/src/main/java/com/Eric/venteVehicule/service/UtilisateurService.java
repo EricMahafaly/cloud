@@ -2,11 +2,14 @@ package com.Eric.venteVehicule.service;
 
 import com.Eric.venteVehicule.model.Utilisateur;
 import com.Eric.venteVehicule.repository.UtilisateurRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UtilisateurService {
+public class UtilisateurService implements UserDetailsService {
     private UtilisateurRepository utilisateurRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -21,7 +24,10 @@ public class UtilisateurService {
         this.utilisateurRepository.save(utilisateur);
     }
 
-    public Utilisateur find(String nomUtilisateur) {
-        return this.utilisateurRepository.findByNomUtilisateur(nomUtilisateur);
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return (UserDetails) this.utilisateurRepository
+                .findByNomUtilisateur(username)
+                .orElseThrow(() -> new UsernameNotFoundException("nom utilisateur invalide"));
     }
 }
