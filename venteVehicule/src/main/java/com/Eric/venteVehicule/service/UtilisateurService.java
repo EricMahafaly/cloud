@@ -2,32 +2,18 @@ package com.Eric.venteVehicule.service;
 
 import com.Eric.venteVehicule.model.Utilisateur;
 import com.Eric.venteVehicule.repository.UtilisateurRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UtilisateurService implements UserDetailsService {
+public class UtilisateurService {
     private UtilisateurRepository utilisateurRepository;
-    private BCryptPasswordEncoder passwordEncoder;
 
-    public UtilisateurService(UtilisateurRepository utilisateurRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UtilisateurService(UtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     public void inscription(Utilisateur utilisateur) {
-        String mdpCrypte = this.passwordEncoder.encode(utilisateur.getMotsDePasse());
-        utilisateur.setMotsDePasse(mdpCrypte);
         this.utilisateurRepository.save(utilisateur);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return (UserDetails) this.utilisateurRepository
-                .findByNomUtilisateur(username)
-                .orElseThrow(() -> new UsernameNotFoundException("nom utilisateur invalide"));
     }
 }
