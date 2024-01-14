@@ -9,25 +9,21 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_utilisateur")
     private int idUtilisateur;
-    private String nom;
-    private String prenom;
     @Column(name = "nom_utilisateur")
     private String nomUtilisateur;
     @Column(name = "mots_de_passe")
     private String motsDePasse;
-    @Column(name = "est_admin")
-    private int estAdmin;
+    @Column(name = "role_")
+    private String role;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(int idUtilisateur, String nom, String prenom, String nomUtilisateur, String motsDePasse, int estAdmin) {
+    public Utilisateur(int idUtilisateur, String nomUtilisateur, String motsDePasse, String role) {
         this.idUtilisateur = idUtilisateur;
-        this.nom = nom;
-        this.prenom = prenom;
         this.nomUtilisateur = nomUtilisateur;
         this.motsDePasse = motsDePasse;
-        this.estAdmin = estAdmin;
+        this.role = role;
     }
 
     public int getIdUtilisateur() {
@@ -36,22 +32,6 @@ public class Utilisateur {
 
     public void setIdUtilisateur(int idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public String getNomUtilisateur() {
@@ -70,11 +50,11 @@ public class Utilisateur {
         this.motsDePasse = motsDePasse;
     }
 
-    public int getEstAdmin() {
-        return estAdmin;
+    public String getRole() {
+        return role;
     }
 
-    public void setEstAdmin(int estAdmin) {
-        this.estAdmin = estAdmin;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

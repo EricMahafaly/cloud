@@ -27,7 +27,7 @@ public class ConfigurationSecurity {
                                                 .requestMatchers(POST, "/utilisateur").permitAll()
                                                 .requestMatchers(GET, "/utilisateur").permitAll()
 
-                                                .anyRequest().authenticated()
+                                                .anyRequest().permitAll()
                         ).build();
     }
 

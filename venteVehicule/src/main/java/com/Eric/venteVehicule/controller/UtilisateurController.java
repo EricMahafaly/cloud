@@ -17,7 +17,7 @@ public class UtilisateurController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(path = "inscription", consumes = APPLICATION_JSON_VALUE)
     public void inscription(@RequestBody Utilisateur utilisateur) {
         this.utilisateurService.inscription(utilisateur);
     }
