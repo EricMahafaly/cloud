@@ -1,10 +1,13 @@
 package com.Eric.venteVehicule.controller;
 
 import com.Eric.venteVehicule.model.Annonce;
+import com.Eric.venteVehicule.model.Utilisateur;
 import com.Eric.venteVehicule.service.AnnonceService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -29,8 +32,18 @@ public class AnnonceController {
         return this.annonceService.findAll();
     }
 
-    @PostMapping(path = "validation", consumes = APPLICATION_JSON_VALUE)
-    public void validationAnnonce(@RequestBody Annonce annonce) {
-        
+    @GetMapping(path = "recherche/date")
+    public List<Annonce> rechercheAvanceDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return this.annonceService.findByDate(date.toString());
+    }
+
+    @GetMapping(path = "recherche/prix", produces = APPLICATION_JSON_VALUE)
+    public List<Annonce> rechercheAvancePrix(@RequestParam("prix") double prix) {
+        return this.annonceService.findByPrix(prix);
+    }
+
+    @GetMapping(path = "historique", produces = APPLICATION_JSON_VALUE)
+    public List<Annonce> historique(@RequestBody Utilisateur utilisateur) {
+        return this.annonceService.historique(utilisateur);
     }
 }

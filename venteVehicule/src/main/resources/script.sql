@@ -27,3 +27,20 @@ CREATE TABLE photo_annonce (
     id_annonce INTEGER,
     FOREIGN KEY (id_annonce) REFERENCES annonce(id_annonce)
 );
+
+CREATE TABLE voiture (
+    id_voiture SERIAL PRIMARY KEY,
+    marque VARCHAR(255),
+    categorie VARCHAR(255),
+    modele VARCHAR(255)
+);
+
+
+-- VIEW --
+
+
+CREATE OR REPLACE VIEW v_annonce AS
+    SELECT annonce.id_annonce, annonce.description_, annonce.prix, annonce.status_, annonce.date_annonce,
+    utilisateur.id_utilisateur, utilisateur.nom_utilisateur, utilisateur.mots_de_passe, utilisateur.role_
+    FROM annonce JOIN utilisateur ON annonce.id_utilisateur = utilisateur.id_utilisateur
+;
