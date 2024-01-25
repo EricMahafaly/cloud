@@ -31,6 +31,6 @@ public class AnnonceController {
 
     @PostMapping(path = "validation", consumes = APPLICATION_JSON_VALUE)
     public void validationAnnonce(@RequestBody Annonce annonce) {
-
+        
     }
 }
