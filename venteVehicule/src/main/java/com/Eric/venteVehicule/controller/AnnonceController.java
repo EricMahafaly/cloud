@@ -28,4 +28,9 @@ public class AnnonceController {
     public List<Annonce> findAll() {
         return this.annonceService.findAll();
     }
+
+    @PostMapping(path = "validation", consumes = APPLICATION_JSON_VALUE)
+    public void validationAnnonce(@RequestBody Annonce annonce) {
+
+    }
 }
