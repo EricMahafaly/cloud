@@ -38,6 +38,6 @@ public class AnnonceService {
     }
 
     public void ajoutFavoris(int idAnnonce, Utilisateur utilisateur) {
-
+        this.request.ajoutFavoris(idAnnonce, utilisateur);
     }
 }

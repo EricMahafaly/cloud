@@ -22,9 +22,6 @@ public class ConfigurationSecurity {
                         .authorizeHttpRequests(
                                 authorize ->
                                         authorize
-                                                .requestMatchers(POST, "/utilisateur").permitAll()
-                                                .requestMatchers(GET, "/utilisateur").permitAll()
-
                                                 .anyRequest().permitAll()
                         ).build();
     }
