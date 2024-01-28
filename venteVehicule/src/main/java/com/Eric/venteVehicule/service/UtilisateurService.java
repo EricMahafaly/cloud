@@ -16,8 +16,6 @@ public class UtilisateurService {
     }
 
     public void inscription(Utilisateur utilisateur) {
-        String mdpCrypte = this.passwordEncoder.encode(utilisateur.getMotsDePasse());
-        utilisateur.setMotsDePasse(mdpCrypte);
         this.utilisateurRepository.save(utilisateur);
     }
 

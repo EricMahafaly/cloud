@@ -35,6 +35,14 @@ CREATE TABLE voiture (
     modele VARCHAR(255)
 );
 
+CREATE TABLE annonce_favoris (
+    id_favoris SERIAL PRIMARY KEY,
+    id_annonce INTEGER,
+    id_utilisateur INTEGER,
+    FOREIGN KEY (id_annonce) REFERENCES annonce(id_annonce),
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur)
+);
+
 
 -- VIEW --
 

@@ -106,4 +106,17 @@ public class Request {
 
         return allAnnonce;
     }
+
+    public void ajoutFavoris(int idAnnonce, Utilisateur utilisateur) {
+        Connection connection = this.connexPostgres.getConnex();
+        try {
+            String sql = "INSERT INTO annonce_favoris VALUES (DEFAULT, " +
+                    idAnnonce + ", " + utilisateur.getIdUtilisateur() + ")";
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

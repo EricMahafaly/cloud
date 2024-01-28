@@ -36,4 +36,8 @@ public class AnnonceService {
     public List<Annonce> historique(Utilisateur utilisateur) {
         return this.request.findAnnonceByUtilisateur(utilisateur);
     }
+
+    public void ajoutFavoris(int idAnnonce, Utilisateur utilisateur) {
+
+    }
 }

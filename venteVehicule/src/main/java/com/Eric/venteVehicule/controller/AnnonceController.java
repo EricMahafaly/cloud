@@ -46,4 +46,9 @@ public class AnnonceController {
     public List<Annonce> historique(@RequestBody Utilisateur utilisateur) {
         return this.annonceService.historique(utilisateur);
     }
+
+    @PostMapping(path = "favoris/{idAnnonce}")
+    public void ajoutFavoris(@PathVariable int idAnnonce, @RequestBody Utilisateur utilisateur) {
+        System.out.println(idAnnonce);
+    }
 }
